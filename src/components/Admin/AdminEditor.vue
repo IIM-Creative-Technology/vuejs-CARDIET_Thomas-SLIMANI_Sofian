@@ -35,8 +35,11 @@ export default {
     toggleEditor() {
       this.$emit('toggleEditor');
     },
+    // Edition de blog
     changeBlog(blog) {
+      // On emploie la fonction editBlog dans notre store
       this.editBlog(blog);
+      // on remet à 0
       this.blog = {meta_title: '', meta_description: '', img: '', content: '',};
       this.toggleEditor();
     },

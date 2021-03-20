@@ -31,16 +31,22 @@ export default {
     ...Vuex.mapGetters(['users']),
   },
   methods: {
+    // on réalise une fonction pour encrypter les mots de passe grâce à bcrypt
     encryptPassword(password) {
+      // on définit la taille du hash
       const salt = bcrypt.genSaltSync(10)
       return bcrypt.hashSync(password, salt)
     },
     register() {
+      // on vérifie si le mot de passe et la confirmation sont pareils
        if(this.user.password !== this.user.confirm_password) {
          this.sendError('Les mots de passe ne correspondent pas');
        }else {
+         // on encrypt avec la fonction crée au dessus
          this.user.password = this.encryptPassword(this.user.password);
+         // on emploie la fonction addUser de notre store
          this.addUser(this.user);
+         // on vide user
          this.user.email = '';
          this.user.pseudo = '';
          this.user.password = '';

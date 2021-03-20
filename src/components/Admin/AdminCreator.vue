@@ -41,11 +41,15 @@ export default {
     toggleCreator() {
       this.$emit('toggleCreator');
     },
+    // Creation de blog
     createBlog(blog) {
+      // On vérifie si le titre existe déjà
       if(this.blogs.filter(blog => blog.title === this.blog.title)) {
         return this.sendError('Ce titre est déjà utilisé')
       }
+      // On utilise la fonction addBlog dans notre store
       this.addBlog(blog);
+      // on remet à 0
       this.blog = {title: '', meta_title: '', meta_description: '', img: '', content: '',};
       this.toggleCreator();
     },

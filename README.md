@@ -2,6 +2,9 @@
 ```
 CARDIET Thomas
 SLIMANI Sofian
+(on avait commencé le projet sur un repo personne
+ce qui explique pourquoi il y a un seul commit et uniquement
+de ma part)
 ```
 
 # blog-vue-cardiet-thomas

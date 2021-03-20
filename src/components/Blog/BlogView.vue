@@ -22,8 +22,11 @@ export default {
   computed: {
     ...Vuex.mapGetters(['blogs']),
     blog() {
+      // on récupère le blog en fonction du titre
+      // *lors de la création on peut mettre un seul titre donc il y aura obligatoirement 1 seul blog dans le tableau d'où l'index [0]
       return this.blogs.filter(blog => blog.title === this.$route.params.title)[0]
     },
+    // on forme la date de création
     date: function () {
       return this.blog.date.getDate() + " " + this.months[this.blog.date.getMonth()] + " " + this.blog.date.getFullYear();
     },

@@ -22,20 +22,26 @@ export default {
     }
   },
   computed: {
+    // on récupère les states de vuex
     ...Vuex.mapGetters(['users']),
     ...Vuex.mapGetters(['current_user']),
   },
   methods: {
     ...Vuex.mapActions(['authUser']),
+    // on vérifie l'authentification
     VerifyUser() {
+      // on récupère l'utilisateur avec le même email
       let user = this.users.filter(user => user.email === this.user.email);
+      // si il y en a aucun on envoie une erreur
       if(user.length <= 0) {
         this.sendError('Utilisateur non enregistré');
       }
       else {
+        // on compare le hashpass avec bcrypt
         bcrypt.compare(this.user.password, user[0].password, (err, res) => {
           if(!res) return this.sendError('Mail ou Mot de passe incorrect');
         })
+        // on emploie la fonction authUser de notre store
         this.authUser(user[0])
       }
     },

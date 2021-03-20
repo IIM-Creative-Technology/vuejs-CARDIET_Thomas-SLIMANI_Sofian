@@ -10,7 +10,7 @@ import AdminList from '@/components/Admin/AdminList';
 import AdminCreator from '@/components/Admin/AdminCreator';
 import AdminEditor from "@/components/Admin/AdminEditor";
 import Vuex from "vuex";
-//import router from "@/router";
+import router from "@/router";
 
 export default {
   name: "Admin",
@@ -29,21 +29,28 @@ export default {
     }
   },
   computed: {
+    // récupérer les données stockées dans vuex
     ...Vuex.mapGetters(['blogs']),
     ...Vuex.mapGetters(['current_user']),
   },
   methods: {
+    // Afficher / Désactiver le créateur de blog
     toggleCreator() {
       this.creator = !this.creator;
     },
+    // Afficher / Désactiver l'éditeur de blog
     toggleEditor(blog) {
       this.editor.toggle = !this.editor.toggle;
+      // on fait passer le blog à modifier
       this.editor.blog = blog;
     },
+    // Vérification si l'utilisateur est connecté
     checkAuth() {
-        //if(this.current_user === null) return router.push({name: 'Blog'});
+      // on redirect si il ne l'est pas
+      if(this.current_user === null) return router.push({name: 'Blog'});
     },
   },
+  // méthodes à appeler lors du chargement de la page
   beforeMount(){
     this.checkAuth();
   },

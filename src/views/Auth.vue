@@ -27,17 +27,22 @@ export default {
     AuthRegister
   },
   methods: {
+    // Vérification si l'utilisateur est connecté
     checkAuth() {
+      // on redirect si il ne l'est pas
       if(this.current_user !== null) return router.push({name: 'Blog'});
     },
+    // Passer du mode connexion à inscription
     toggleAuth() {
       this.auth_type++;
       if(this.auth_type > 1) this.auth_type = 0;
     },
+    // Afficher les erreurs
     sendError(error) {
       this.error = error;
     }
   },
+  // méthodes à appeler lors du chargement de la page
   beforeMount(){
     this.checkAuth();
   },

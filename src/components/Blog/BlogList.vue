@@ -29,20 +29,30 @@ export default {
     }
   },
   computed: {
+    // On récupère les blogs en fonction du numéro de page
     getBlogsPage() {
+      // on récupère de début du tableau en fonction de la page actuelle
       let start_blog = this.per_page*this.current_page;
+      // et la fin pour avoir un interval
       let end_blog = start_blog+this.per_page;
+      // on récupère uniquement la partie du tableau qu'on souhaite
       return this.blogs.slice(start_blog,end_blog);
     },
+    // on récupère le nombre de page à afficher
     getNbPage() {
+      // on arrondit à l'entier au dessus
+      // on divise le nombre de blogs par le nombre de page
       return Math.ceil(this.blogs.length/this.per_page);
     },
+    // on réalise un tableau contenant la page précédente, actuelle et suivante
     getFollowingPages() {
       let followings = [];
+      // on vérifie si la page précédente existe
       if(!this.isFirstPage) {
         followings.push(this.current_page-1);
       }
       followings.push(this.current_page);
+      // on vérifie si la page suivante existe
       if(!this.isLastPage) {
         followings.push(this.current_page+1);
       }
@@ -56,6 +66,7 @@ export default {
     }
   },
   methods: {
+    // on change la page actuelle et les blogs affichés
     changePage(nb) {
       this.current_page = nb-1;
     }
