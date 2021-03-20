@@ -1,3 +1,9 @@
+# contributors
+```
+CARDIET Thomas
+SLIMANI Sofian
+```
+
 # blog-vue-cardiet-thomas
 
 ## Project setup

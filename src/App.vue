@@ -1,17 +1,32 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="nav">
+    <router-link v-if="isAuth" to="/admin">Gérer le Blog</router-link> |
+    <router-link to="/">Blog</router-link> |
+    <router-link v-if="!isAuth" to="/login">Login</router-link>
+    <a href="#" v-else @click="disconnect">Se déconnecter</a>
+  </div>
+  <h2 v-if="isAuth">Bienvenue '{{ current_user }}'</h2>
+  <router-view/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+  import Vuex from "vuex";
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  export default {
+    name: 'App',
+    computed: {
+      ...Vuex.mapGetters(['current_user']),
+      isAuth() {
+        return this.current_user !== null;
+      }
+    },
+    methods: {
+      disconnect() {
+        this.disconnectUser();
+      },
+      ...Vuex.mapActions(['disconnectUser']),
+    }
   }
-}
 </script>
 
 <style>
@@ -21,6 +36,22 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
+}
+
+ul {
+  list-style: none;
 }
 </style>
