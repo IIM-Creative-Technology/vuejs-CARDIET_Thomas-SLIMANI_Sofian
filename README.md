@@ -5,6 +5,8 @@ SLIMANI Sofian
 (on avait commencé le projet sur un repo personne
 ce qui explique pourquoi il y a un seul commit et uniquement
 de ma part)
+- pour l'upload de file nous avons essayé d'enregistrer dans vuex mais la migration
+ne veut pas transférer l'image, nous sommes donc restés sur l'url
 ```
 
 # blog-vue-cardiet-thomas

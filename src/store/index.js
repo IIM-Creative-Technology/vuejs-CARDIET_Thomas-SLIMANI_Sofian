@@ -12,13 +12,9 @@ const state = {
       },
     ],
 
-  users: [{
-    email: 'test@gmail.com',
-    pseudo: 'test',
-    password: 'test'
-  }],
+  users: [],
 
-  current_user: 'test'
+  current_user: null
 }
 
 const mutations = {

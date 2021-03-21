@@ -10,7 +10,7 @@ import AdminList from '@/components/Admin/AdminList';
 import AdminCreator from '@/components/Admin/AdminCreator';
 import AdminEditor from "@/components/Admin/AdminEditor";
 import Vuex from "vuex";
-//import router from "@/router";
+import router from "@/router";
 
 export default {
   name: "Admin",
@@ -65,7 +65,7 @@ export default {
     // Vérification si l'utilisateur est connecté
     checkAuth() {
       // on redirect si il ne l'est pas
-      //if(this.current_user === null) return router.push({name: 'Blog'});
+      if(this.current_user === null) return router.push({name: 'Blog'});
     },
   },
   // méthodes à appeler lors du chargement de la page

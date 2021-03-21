@@ -51,4 +51,13 @@ export default {
 
 <style scoped>
 
+  .error-block {
+    background-color: #b02a2a;
+    color: white;
+    width: 50%;
+    margin: 15px auto;
+    font-size: 1.5em;
+    padding: 10px 0;
+  }
+
 </style>

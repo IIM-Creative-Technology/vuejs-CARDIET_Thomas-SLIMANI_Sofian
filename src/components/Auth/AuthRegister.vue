@@ -1,13 +1,13 @@
 <template>
-  <h2>Formulaire d'inscription</h2>
-  <input type="email" placeholder="Email" v-model="user.email"><br>
-  <input type="text" placeholder="User" v-model="user.pseudo"><br>
-  <input type="password" placeholder="Mot de passe" v-model="user.password"><br>
-  <input type="password" placeholder="Confirmer mot de passe" v-model="user.confirm_password"><br>
-  <button @click.prevent="register">S'enregistrer</button>
-  <p>Déjà un compte? <a href="#" @click.prevent="toggleAuth">Se connecter</a></p>
-
-  {{ users }}
+  <div id="connection-block">
+    <h2 id="title">Formulaire d'inscription</h2>
+    <input type="email" placeholder="Email" v-model="user.email"><br>
+    <input type="text" placeholder="User" v-model="user.pseudo"><br>
+    <input type="password" placeholder="Mot de passe" v-model="user.password"><br>
+    <input type="password" placeholder="Confirmer mot de passe" v-model="user.confirm_password"><br>
+    <button @click.prevent="register">S'enregistrer</button>
+    <p>Déjà un compte? <a href="#" @click.prevent="toggleAuth">Se connecter</a></p>
+  </div>
 </template>
 
 <script>
@@ -72,5 +72,41 @@ export default {
 </script>
 
 <style scoped>
+
+  #connection-block {
+    width: 40%;
+    margin: 20px auto;
+    border: gray 1px solid;
+    padding: 5px;
+  }
+
+  #title {
+    margin: 20px 0;
+    font-size: 1.8em;
+  }
+
+  input {
+    margin: 10px 0;
+    font-size: 1.5em;
+  }
+
+  button {
+    margin: 15px 0;
+    border: none;
+    font-size: 1.5em;
+    outline: none;
+    padding: 4px;
+    border-radius: 5px;
+  }
+
+  button:hover {
+    cursor: pointer;
+    background-color: #42b983;
+  }
+
+  a {
+    text-decoration: none;
+    color: #42b983;
+  }
 
 </style>
