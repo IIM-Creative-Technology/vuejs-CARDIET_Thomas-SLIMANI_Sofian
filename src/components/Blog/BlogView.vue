@@ -1,10 +1,12 @@
 <template>
-  <h1>Vue</h1>
-  <h2>{{ blog.title }}</h2>
   <img :src="blog.img" alt="">
-  <p>{{ blog.content }}</p>
+  <h2 id="title">{{ blog.title }}</h2>
+  <p id="content">{{ blog.content }}</p>
 
-  <p>Posté le {{ date }}</p> <p>par {{ blog.author }}</p>
+  <div id="infos-block">
+    <p id="date">Posté le {{ date }}</p>
+    <p id="author">par <span>{{ blog.author }}</span></p>
+  </div>
 </template>
 
 <script>
@@ -38,6 +40,36 @@ export default {
 
   .current-page {
     background-color: #42b983;
+  }
+
+  img {
+    max-width: 40%;
+  }
+
+  #title {
+    font-family: sans-serif;
+    text-transform: uppercase;
+  }
+
+  #content {
+    text-align: left;
+    width: 40%;
+    margin: 50px auto;
+    background-color: gray;
+    padding: 10px;
+    color: white;
+  }
+
+  #infos-block {
+    display: flex;
+    justify-content: space-between;
+    width: 40%;
+    margin: auto;
+  }
+
+  #author > span {
+    color: #9b1e1e;
+    font-weight: bold;
   }
 
 </style>

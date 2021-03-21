@@ -2,7 +2,6 @@
   <h1>Liste des pages</h1>
   <ul>
     <li v-for="blog in getBlogsPage" :key="blog">
-      {{ blog.img }}
       <img :src="blog.img" alt="">
       <h2>{{ blog.title }}</h2>
       <h3>{{ blog.meta_title }}</h3>
