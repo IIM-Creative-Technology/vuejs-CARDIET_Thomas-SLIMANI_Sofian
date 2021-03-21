@@ -7,6 +7,7 @@ ce qui explique pourquoi il y a un seul commit et uniquement
 de ma part)
 - pour l'upload de file nous avons essayé d'enregistrer dans vuex mais la migration
 ne veut pas transférer l'image, nous sommes donc restés sur l'url
+- pour quitter editeur ou creator cliquer sur l'overlay
 ```
 
 # blog-vue-cardiet-thomas

@@ -1,10 +1,13 @@
 <template>
   <h1>Liste des pages</h1>
   <ul>
-    <li v-for="blog in getBlogsPage" :key="blog">
+    <li class="article" v-for="blog in getBlogsPage" :key="blog">
       <img v-bind:src="blog.img" alt="">
-      <h2>{{ blog.title }}</h2>
-      <router-link :to="{ name: 'BlogView', params: { title: blog.title} }">En savoir plus</router-link>
+      <div class="block">
+        <h2>{{ blog.title }}</h2>
+      </div>
+
+      <router-link class="savoir-plus" :to="{ name: 'BlogView', params: { title: blog.title} }">En savoir plus</router-link>
     </li>
   </ul>
 
@@ -78,6 +81,27 @@ export default {
 
   .current-page {
     background-color: #42b983;
+  }
+
+  .article{
+    display: flex;
+    width: 60%;
+    background-color: #42b983;
+    margin: 2em auto;
+    padding: 1em 1em;
+    flex-wrap: wrap;
+  }
+
+  .block{
+    margin: 2em auto;
+    max-width: 20%;
+    text-align: center;
+  }
+
+  .savoir-plus{
+    margin: auto;
+    text-decoration: none;
+    color: #ffffff;
   }
 
 </style>

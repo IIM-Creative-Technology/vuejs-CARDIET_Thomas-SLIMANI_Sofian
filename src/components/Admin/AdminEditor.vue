@@ -3,19 +3,27 @@
   <div id="editor-block">
     <h2>Modifier la page '{{ blog.title }}'</h2>
 
-    <label>Meta Title</label>
-    <input type="text" placeholder="Meta Title" v-model="blog.meta_title" ><br>
+    <div class="form">
 
-    <label>Meta Description</label>
-    <input type="text" placeholder="Meta Description" v-model="blog.meta_description"><br>
+      <div class="line-form">
+        <label>Meta Title</label>
+        <input type="text" v-model="blog.meta_title"><br>
+      </div>
+      <div class="line-form">
+        <label>Meta Description</label>
+        <input type="text" v-model="blog.meta_description"><br>
+      </div>
+      <div class="line-form">
+        <label>Image URL</label>
+        <input type="text" v-model="blog.img"><br>
+      </div>
+      <div class="line-form">
+        <label>Corps du post</label>
+        <textarea  v-model="blog.content"/><br>
+      </div>
+    </div>
 
-    <label>Image</label>
-    <input type="text" placeholder="Image Link" v-model="blog.img"><br>
-
-    <label>Content</label>
-    <textarea placeholder="Corps du post" v-model="blog.content"/><br>
-
-    <button @click.prevent="changeBlog">Modifier la page</button>
+    <button class="edit" @click.prevent="changeBlog">Modifier la page</button>
   </div>
 </template>
 
@@ -77,5 +85,34 @@ export default {
 
   #editor-block.activated {
     transform: translateX(0);
+  }
+
+  .form{
+    width: 80%;
+    margin: 2em auto;
+    text-align: left;
+  }
+  .line-form{
+    margin: 1em;
+  }
+
+  label{
+    display: block;
+    width: 150px;
+    float: left;
+  }
+
+  .edit{
+    background: none;
+    border: 2px solid #000000;
+    display: block;
+    font-size: 0.7em;
+    font-weight: lighter;
+    padding: 1em 2em;
+    position: relative;
+    text-transform: uppercase;
+    height: 4em;
+    margin: auto;
+
   }
 </style>

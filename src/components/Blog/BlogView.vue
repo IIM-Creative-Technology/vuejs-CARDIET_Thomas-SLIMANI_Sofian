@@ -1,12 +1,15 @@
 <template>
-  <img :src="blog.img" alt="">
-  <h2 id="title">{{ blog.title }}</h2>
-  <p id="content">{{ blog.content }}</p>
+  <div class="fond-view">
+    <img :src="blog.img" alt="">
+    <h2 id="title">{{ blog.title }}</h2>
+    <p id="content">{{ blog.content }}</p>
 
-  <div id="infos-block">
-    <p id="date">Posté le {{ date }}</p>
-    <p id="author">par <span>{{ blog.author }}</span></p>
+    <div id="infos-block">
+      <p id="date">Posté le {{ date }}</p>
+      <p id="author">par <span>{{ blog.author }}</span></p>
+    </div>
   </div>
+
 </template>
 
 <script>
@@ -70,6 +73,12 @@ export default {
   #author > span {
     color: #9b1e1e;
     font-weight: bold;
+  }
+
+  .fond-view{
+    background-color: #42b983;
+    padding: 2em;
+
   }
 
 </style>

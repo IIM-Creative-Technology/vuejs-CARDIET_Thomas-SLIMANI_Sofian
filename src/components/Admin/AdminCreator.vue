@@ -4,15 +4,36 @@
     <h2>Créer une nouvelle page</h2>
 
     <p v-if="error" class="error-block">{{ error }}</p>
+  <div class="form">
+    <div class="line-form">
+      <label>Titre de la page</label>
+      <input type="text" v-model="blog.title"><br>
+    </div>
+    <div class="line-form">
+      <label>Meta Title</label>
+      <input type="text" v-model="blog.meta_title"><br>
+    </div>
+    <div class="line-form">
+      <label>Meta Description</label>
+      <input type="text" v-model="blog.meta_description"><br>
+    </div>
+    <div class="line-form">
+      <label>Image URL</label>
+      <input type="text" v-model="blog.img"><br>
+    </div>
+    <div class="line-form">
+      <label>Corps du post</label>
+      <textarea  v-model="blog.content"/><br>
+    </div>
+  </div>
 
-    <input type="text" placeholder="Title" v-model="blog.title"><br>
-    <input type="text" placeholder="Meta Title" v-model="blog.meta_title"><br>
-    <input type="text" placeholder="Meta Description" v-model="blog.meta_description"><br>
-    <input type="text" placeholder="Image URL" v-model="blog.img"><br>
+
+
+
 <!--    <input type="file" placeholder="Image Link" @change="onFileSelected"><br>-->
-    <textarea placeholder="Corps du post" v-model="blog.content"/><br>
 
-    <button @click.prevent="createBlog">Créer la page</button>
+
+    <button class="edit" @click.prevent="createBlog">Créer la page</button>
   </div>
 </template>
 
@@ -103,5 +124,33 @@ export default {
 
   #creator-block.activated {
     transform: translateX(0);
+  }
+  .form{
+    width: 80%;
+    margin: 2em auto;
+    text-align: left;
+  }
+  .line-form{
+    margin: 1em;
+  }
+
+  label{
+    display: block;
+    width: 150px;
+    float: left;
+  }
+
+  .edit{
+    background: none;
+    border: 2px solid #000000;
+    display: block;
+    font-size: 0.7em;
+    font-weight: lighter;
+    padding: 1em 2em;
+    position: relative;
+    text-transform: uppercase;
+    height: 4em;
+    margin: auto;
+
   }
 </style>

@@ -94,13 +94,17 @@ export default {
 
   .article{
     display: flex;
-    width: 50%;
+    width: 60%;
     background-color: #42b983;
     margin: 2em auto;
-    padding: 0.3em 1em;
+    padding: 1em 1em;
+    flex-wrap: wrap;
   }
 
   .block{
+    margin: 2em auto;
+    max-width: 20%;
+    text-align: center;
   }
 
   .edit{
@@ -130,6 +134,11 @@ export default {
     text-transform: uppercase;
     height: 4em;
     margin: auto 1em;
+  }
+
+  img{
+    width: 30%;
+    height: auto;
   }
 
 
