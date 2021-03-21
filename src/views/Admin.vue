@@ -36,7 +36,7 @@ export default {
   methods: {
     // Afficher / Désactiver le créateur de blog
     toggleCreator() {
-      if(!this.editor.toggle) {
+      if(!this.creator) {
         setTimeout(function () {
           let creator = document.getElementById('creator-block');
           creator.classList.toggle('activated');
@@ -44,6 +44,7 @@ export default {
           overlay.classList.toggle('activated');
         }, 0.1);
       }
+      this.creator = !this.creator;
     },
     // Afficher / Désactiver l'éditeur de blog
     toggleEditor(blog) {
