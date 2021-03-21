@@ -8,7 +8,8 @@
     <input type="text" placeholder="Title" v-model="blog.title"><br>
     <input type="text" placeholder="Meta Title" v-model="blog.meta_title"><br>
     <input type="text" placeholder="Meta Description" v-model="blog.meta_description"><br>
-    <input type="file" placeholder="Image Link" @change="onFileSelected"><br>
+    <input type="text" placeholder="Image URL" v-model="blog.img"><br>
+<!--    <input type="file" placeholder="Image Link" @change="onFileSelected"><br>-->
     <textarea placeholder="Corps du post" v-model="blog.content"/><br>
 
     <button @click.prevent="createBlog">Créer la page</button>
@@ -27,7 +28,7 @@ export default {
         title: '',
         meta_title: '',
         meta_description: '',
-        img: null,
+        img: '',
         content: '',
       },
       error: ''
