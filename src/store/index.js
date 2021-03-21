@@ -5,7 +5,7 @@ const state = {
       {title: "test",
         meta_title: "test",
         meta_description: "test",
-        img: null,
+        img: 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg',
         content: "fhie zfhiez hfief oizejhfoezj ofjezo fjozejf oezjfoejz foez ofjezfo jezofj ezof",
         date: new Date(),
         author: 'test'
@@ -22,16 +22,16 @@ const state = {
 }
 
 const mutations = {
-  ADD_BLOG: (state, title, meta_title, meta_description, img, content, author) => {
-    if(img === null) img = 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg';
+  ADD_BLOG: (state, blog) => {
+    if(!blog.img) blog.img = 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg';
     state.blogs.push({
-      title: title,
-      meta_title: meta_title,
-      meta_description: meta_description,
-      img: img,
-      content: content,
+      title: blog.title,
+      meta_title: blog.meta_title,
+      meta_description: blog.meta_description,
+      img: blog.img,
+      content: blog.content,
       date: new Date(),
-      author: author
+      author: state.current_user
     })
   },
   REMOVE_BLOG: (state, blog) => {
@@ -66,7 +66,7 @@ const getters = {
 
 const actions = {
   addBlog: (store, blog) => {
-    store.commit('ADD_BLOG', blog.title, blog.meta_title, blog.meta_description, blog.img, blog.content, store.current_user);
+    store.commit('ADD_BLOG', blog);
   },
   deleteBlog: (store, blog) => {
     store.commit('REMOVE_BLOG', blog);

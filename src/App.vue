@@ -5,7 +5,7 @@
     <router-link v-if="!isAuth" to="/login">Login</router-link>
     <a href="#" v-else @click="disconnect">Se déconnecter</a>
   </div>
-  <h2 v-if="isAuth">Bienvenue '{{ current_user }}'</h2>
+  <p id="author-name" v-if="isAuth">Bienvenue '{{ current_user }}'</p>
   <router-view/>
 </template>
 
@@ -30,6 +30,12 @@
 </script>
 
 <style>
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -53,5 +59,14 @@
 
 ul {
   list-style: none;
+}
+
+#author-name {
+  background-color: gray;
+  color: white;
+  padding: 10px 0;
+  font-weight: bold;
+  font-size: 1.6em;
+  margin-bottom: 20px;
 }
 </style>
