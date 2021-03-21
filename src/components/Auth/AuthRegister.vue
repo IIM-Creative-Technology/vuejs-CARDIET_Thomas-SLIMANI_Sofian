@@ -39,19 +39,26 @@ export default {
     },
     register() {
       // on vérifie si le mot de passe et la confirmation sont pareils
-       if(this.user.password !== this.user.confirm_password) {
-         this.sendError('Les mots de passe ne correspondent pas');
-       }else {
-         // on encrypt avec la fonction crée au dessus
-         this.user.password = this.encryptPassword(this.user.password);
-         // on emploie la fonction addUser de notre store
-         this.addUser(this.user);
-         // on vide user
-         this.user.email = '';
-         this.user.pseudo = '';
-         this.user.password = '';
-         this.user.confirm_password = '';
-       }
+      if(this.user.password !== this.user.confirm_password) {
+        return this.sendError('Les mots de passe ne correspondent pas');
+      }
+      // on vérifie si le pseudo existe déjà
+      if(this.users.filter(user => user.pseudo === this.user.pseudo).length > 0) {
+        return this.sendError('Pseudo déjà utilisé');
+      }
+      // on vérifie si l'email existe déjà
+      if(this.users.filter(user => user.email === this.user.email).length > 0) {
+        return this.sendError('Email déjà utilisé');
+      }
+      // on encrypt avec la fonction crée au dessus
+      this.user.password = this.encryptPassword(this.user.password);
+      // on emploie la fonction addUser de notre store
+      this.addUser(this.user);
+      // on vide user
+      this.user.email = '';
+      this.user.pseudo = '';
+      this.user.password = '';
+      this.user.confirm_password = '';
     },
     ...Vuex.mapActions(['addUser']),
     toggleAuth() {

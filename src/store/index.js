@@ -7,7 +7,9 @@ const state = {
         meta_description: "test",
         img: null,
         content: "fhie zfhiez hfief oizejhfoezj ofjezo fjozejf oezjfoejz foez ofjezfo jezofj ezof",
-        date: new Date()},
+        date: new Date(),
+        author: 'test'
+      },
     ],
 
   users: [{
@@ -16,19 +18,20 @@ const state = {
     password: 'test'
   }],
 
-  current_user: null
+  current_user: 'test'
 }
 
 const mutations = {
-  ADD_BLOG: (state, title, meta_title, meta_description, img, content) => {
-    console.log(img)
+  ADD_BLOG: (state, title, meta_title, meta_description, img, content, author) => {
+    if(img === null) img = 'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg';
     state.blogs.push({
       title: title,
       meta_title: meta_title,
       meta_description: meta_description,
       img: img,
       content: content,
-      date: new Date()
+      date: new Date(),
+      author: author
     })
   },
   REMOVE_BLOG: (state, blog) => {
@@ -63,8 +66,7 @@ const getters = {
 
 const actions = {
   addBlog: (store, blog) => {
-    console.log(blog.img)
-    store.commit('ADD_BLOG', blog.title, blog.meta_title, blog.meta_description, blog.img, blog.content);
+    store.commit('ADD_BLOG', blog.title, blog.meta_title, blog.meta_description, blog.img, blog.content, store.current_user);
   },
   deleteBlog: (store, blog) => {
     store.commit('REMOVE_BLOG', blog);

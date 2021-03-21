@@ -1,6 +1,6 @@
 <template>
-  <div @click.prevent="toggleEditor" id="overlay"></div>
-  <div id="creator-block">
+  <div @click.prevent="toggleEditor" id="overlay-editor"></div>
+  <div id="editor-block">
     <h2>Modifier la page '{{ blog.title }}'</h2>
 
     <label>Meta Title</label>
@@ -15,7 +15,7 @@
     <label>Content</label>
     <textarea placeholder="Corps du post" v-model="blog.content"/><br>
 
-    <button @click.prevent="changeBlog(blog)">Modifier la page</button>
+    <button @click.prevent="changeBlog">Modifier la page</button>
   </div>
 </template>
 
@@ -33,12 +33,12 @@ export default {
   },
   methods: {
     toggleEditor() {
-      this.$emit('toggleEditor');
+      this.$emit('toggleEditor', this.blog);
     },
     // Edition de blog
-    changeBlog(blog) {
+    changeBlog() {
       // On emploie la fonction editBlog dans notre store
-      this.editBlog(blog);
+      this.editBlog(this.blog);
       // on remet à 0
       this.blog = {meta_title: '', meta_description: '', img: '', content: '',};
       this.toggleEditor();
@@ -49,21 +49,33 @@ export default {
 </script>
 
 <style scoped>
-  #overlay {
+  #overlay-editor {
     background-color: rgba(0,0,0,0.5);
     position: fixed;
     width: 100%;
     height: 100%;
     left: 0;
     top: 0;
+    display: none;
   }
 
-  #creator-block {
+  #overlay-editor.activated {
+    display: block;
+  }
+
+  #editor-block {
     position: fixed;
-    width: 80%;
-    height: 90%;
+    width: 50%;
+    height: 100%;
     background-color: white;
-    left: 10%;
-    top: 5%;
+    right: 0;
+    top: 0;
+    transform: translate(100%);
+    transition: transform .2s ease-out;
+    z-index: 999;
+  }
+
+  #editor-block.activated {
+    transform: translateX(0);
   }
 </style>

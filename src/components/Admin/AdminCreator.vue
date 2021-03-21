@@ -1,5 +1,5 @@
 <template>
-  <div @click.prevent="toggleCreator" id="overlay"></div>
+  <div @click.prevent="toggleCreator" id="overlay-creator"></div>
   <div id="creator-block">
     <h2>Créer une nouvelle page</h2>
 
@@ -11,7 +11,7 @@
     <input type="file" placeholder="Image Link" @change="onFileSelected"><br>
     <textarea placeholder="Corps du post" v-model="blog.content"/><br>
 
-    <button @click.prevent="createBlog(blog)">Créer la page</button>
+    <button @click.prevent="createBlog">Créer la page</button>
   </div>
 </template>
 
@@ -42,13 +42,13 @@ export default {
       this.$emit('toggleCreator');
     },
     // Creation de blog
-    createBlog(blog) {
+    createBlog() {
       // On vérifie si le titre existe déjà
-      if(this.blogs.filter(blog => blog.title === this.blog.title)) {
+      if(this.blogs.filter(blog => blog.title === this.blog.title).length > 0) {
         return this.sendError('Ce titre est déjà utilisé')
       }
       // On utilise la fonction addBlog dans notre store
-      this.addBlog(blog);
+      this.addBlog(this.blog);
       // on remet à 0
       this.blog = {title: '', meta_title: '', meta_description: '', img: '', content: '',};
       this.toggleCreator();
@@ -68,29 +68,39 @@ export default {
         this.blog.img = e.target.result;
       };
       reader.readAsDataURL(file);
-
-      console.log(this.blog.img)
     },
-  }
+  },
 }
 </script>
 
 <style scoped>
-  #overlay {
+  #overlay-creator {
     background-color: rgba(0,0,0,0.5);
     position: fixed;
     width: 100%;
     height: 100%;
     left: 0;
     top: 0;
+    display: none;
+  }
+
+  #overlay-creator.activated {
+    display: block;
   }
 
   #creator-block {
     position: fixed;
-    width: 80%;
-    height: 90%;
+    width: 50%;
+    height: 100%;
     background-color: white;
-    left: 10%;
-    top: 5%;
+    right: 0;
+    top: 0;
+    transform: translate(100%);
+    transition: transform .2s ease-out;
+    z-index: 999;
+  }
+
+  #creator-block.activated {
+    transform: translateX(0);
   }
 </style>

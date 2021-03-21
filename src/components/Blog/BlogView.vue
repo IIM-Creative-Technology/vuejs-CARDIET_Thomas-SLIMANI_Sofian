@@ -4,7 +4,7 @@
   <img :src="blog.img" alt="">
   <p>{{ blog.content }}</p>
 
-  <h3>Posté le {{ date }}</h3>
+  <p>Posté le {{ date }}</p> <p>par {{ blog.author }}</p>
 </template>
 
 <script>

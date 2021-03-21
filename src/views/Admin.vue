@@ -10,7 +10,7 @@ import AdminList from '@/components/Admin/AdminList';
 import AdminCreator from '@/components/Admin/AdminCreator';
 import AdminEditor from "@/components/Admin/AdminEditor";
 import Vuex from "vuex";
-import router from "@/router";
+//import router from "@/router";
 
 export default {
   name: "Admin",
@@ -36,18 +36,35 @@ export default {
   methods: {
     // Afficher / Désactiver le créateur de blog
     toggleCreator() {
-      this.creator = !this.creator;
+      if(!this.editor.toggle) {
+        setTimeout(function () {
+          let creator = document.getElementById('creator-block');
+          creator.classList.toggle('activated');
+          let overlay = document.getElementById('overlay-creator');
+          overlay.classList.toggle('activated');
+        }, 0.1);
+      }
     },
     // Afficher / Désactiver l'éditeur de blog
     toggleEditor(blog) {
-      this.editor.toggle = !this.editor.toggle;
-      // on fait passer le blog à modifier
+      // on définit le blog à modifier
       this.editor.blog = blog;
+
+      if(!this.editor.toggle) {
+        setTimeout(function () {
+          let editor = document.getElementById('editor-block');
+          editor.classList.toggle('activated');
+          let overlay = document.getElementById('overlay-editor');
+          overlay.classList.toggle('activated');
+        }, 0.1);
+      }
+
+      this.editor.toggle = !this.editor.toggle;
     },
     // Vérification si l'utilisateur est connecté
     checkAuth() {
       // on redirect si il ne l'est pas
-      if(this.current_user === null) return router.push({name: 'Blog'});
+      //if(this.current_user === null) return router.push({name: 'Blog'});
     },
   },
   // méthodes à appeler lors du chargement de la page
