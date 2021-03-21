@@ -42,9 +42,9 @@ export default {
         // on compare le hashpass avec bcrypt
         bcrypt.compare(this.user.password, user[0].password, (err, res) => {
           if(!res) return this.sendError('Mail ou Mot de passe incorrect');
+          // on emploie la fonction authUser de notre store
+          else this.authUser(user[0])
         })
-        // on emploie la fonction authUser de notre store
-        this.authUser(user[0])
       }
     },
     toggleAuth() {
