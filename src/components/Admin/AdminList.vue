@@ -1,14 +1,17 @@
 <template>
   <h1>Liste des pages</h1>
   <ul>
-    <li v-for="blog in getBlogsPage" :key="blog">
+    <li class="article" v-for="blog in getBlogsPage" :key="blog">
       {{ blog.img }}
       <img :src="blog.img" alt="">
-      <h2>{{ blog.title }}</h2>
-      <h3>{{ blog.meta_title }}</h3>
-      <h4>{{ blog.meta_description }}</h4>
-      <button @click.prevent="toggleEditor(blog)">Editer</button>
-      <button @click.prevent="deleteBlog(blog)">Supprimer</button>
+      <div class="block">
+        <h2>{{ blog.title }}</h2>
+        <h3>{{ blog.meta_title }}</h3>
+        <h4>{{ blog.meta_description }}</h4>
+      </div>
+
+      <button class="edit" @click.prevent="toggleEditor(blog)">Editer</button>
+      <button class="suppr" @click.prevent="deleteBlog(blog)">supprimer</button>
     </li>
   </ul>
 
@@ -89,5 +92,46 @@ export default {
   .current-page {
     background-color: #42b983;
   }
+
+  .article{
+    display: flex;
+    width: 50%;
+    background-color: #42b983;
+    margin: 2em auto;
+    padding: 0.3em 1em;
+  }
+
+  .block{
+  }
+
+  .edit{
+    background: none;
+    border: 2px solid #000000;
+    display: block;
+    font-size: 0.7em;
+    font-weight: lighter;
+    padding: 1em 2em;
+    position: relative;
+    text-transform: uppercase;
+    height: 4em;
+    margin: auto 0.5em auto 3em;
+
+  }
+  .suppr{
+    background-color: red;
+    color: #ffffff;
+    border:none ;
+    border-radius: 5px;
+
+    display: block;
+    font-size: 0.7em;
+    font-weight: bold;
+    padding: 1em 2em;
+    position: relative;
+    text-transform: uppercase;
+    height: 4em;
+    margin: auto 1em;
+  }
+
 
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <button @click.prevent="toggleCreator">Créer une page</button>
+  <button class="button" @click.prevent="toggleCreator">Créer une page</button>
   <admin-creator v-if="creator" v-on:toggleCreator="toggleCreator" :blogs="blogs"/>
   <admin-editor v-if="editor.toggle" v-on:toggleEditor="toggleEditor($event)" :current_blog="editor.blog"/>
   <admin-list v-on:toggleEditor="toggleEditor($event)" :blogs="blogs"/>
@@ -76,5 +76,42 @@ export default {
 </script>
 
 <style scoped>
+  .button,
+  button::after {
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+  }
+  .button {
+    background: none;
+    border: 4px solid #000000;
+    border-radius: 10px;
+    color: #000000;
+    display: block;
+    font-size: 0.7em;
+    font-weight: bold;
+    margin: 5px auto;
+    padding: 1em 3em;
+    position: relative;
+    text-transform: uppercase;
+  }
+  .button::before,
+  button::after {
+    background: #000000;
+    content: '';
+    position: absolute;
+    z-index: -1;
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 0;
+  }
+  .button:hover {
+    color: #ffffff;
+  }
 
+  .button:hover:after {
+    width: 100%;
+  }
 </style>
